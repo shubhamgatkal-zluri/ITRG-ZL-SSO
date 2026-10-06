@@ -1,106 +1,27 @@
-// Charts + demo-mode toggle for the Zluri page inside the ITRG dashboard.
-// Design language lifted from CIO Analytics: Exo for labels, Roboto for numbers,
-// grey-200 (#dadada) gridlines, section accent colours for the series.
+// Demo-mode toggle and Zluri overview iframe for the Zluri page inside the ITRG dashboard.
 (function () {
   'use strict';
 
-  var MONTHS = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'];
+  // v1-dashboard swaps in its small-screen notice below 1200px, so the overview
+  // iframe renders at least this wide and is scaled down to fit narrower layouts.
+  var EMBED_MIN_WIDTH = 1280;
+  var EMBED_HEIGHT = 720;
 
-  var DATA = {
-    apps: [212, 219, 224, 231, 236, 241, 247, 251, 256, 259, 264, 268],
-    users: [1840, 1872, 1905, 1948, 1990, 2031, 2074, 2118, 2162, 2211, 2264, 2310],
-    // $k per month, same series as ACTUAL SPEND PER MONTH on the Zluri overview
-    spend: [268, 274, 281, 296, 302, 311, 318, 324, 331, 338, 346, 352],
-    // cumulative, so it only ever goes up
-    savings: [18, 41, 69, 102, 138, 177, 219, 258, 301, 340, 377, 412],
-  };
+  // app.zluri.dev only lets the Vercel deploy frame it, so local builds frame a local v1-dashboard.
+  var EMBED_SRC = location.hostname === 'localhost'
+    ? 'http://localhost:4040/mock-itrg-overview?partner=Zluri'
+    : 'https://app.zluri.dev/mock-itrg-overview?partner=Zluri';
 
-  var BASE = {
-    chart: { backgroundColor: 'transparent', spacing: [8, 4, 8, 4], style: { fontFamily: 'Roboto, ui-sans-serif, system-ui, sans-serif' } },
-    title: { text: null },
-    credits: { enabled: false },
-    legend: { enabled: false },
-    xAxis: {
-      categories: MONTHS,
-      lineColor: '#dadada',
-      tickColor: '#dadada',
-      labels: { style: { color: '#606060', fontFamily: 'Exo, ui-sans-serif, system-ui, sans-serif', fontSize: '12px' } },
-    },
-    yAxis: {
-      title: { text: null },
-      gridLineColor: '#ededed',
-      gridLineDashStyle: 'Dash',
-      labels: { style: { color: '#606060', fontFamily: 'Exo, ui-sans-serif, system-ui, sans-serif', fontSize: '12px' } },
-    },
-    tooltip: {
-      backgroundColor: '#08233f',
-      borderWidth: 0,
-      borderRadius: 6,
-      shadow: false,
-      style: { color: '#ffffff', fontFamily: 'Exo, ui-sans-serif, system-ui, sans-serif', fontSize: '13px' },
-    },
-    plotOptions: {
-      series: {
-        lineWidth: 3,
-        marker: { enabled: false, symbol: 'circle', radius: 4, states: { hover: { enabled: true, radiusPlus: 2, lineWidth: 2, lineColor: '#ffffff' } } },
-        states: { hover: { lineWidthPlus: 0 }, inactive: { opacity: 1 } },
-      },
-    },
-  };
-
-  function merge(extra) {
-    return Highcharts.merge(true, {}, BASE, extra);
-  }
-
-  var CHARTS = [
-    {
-      id: 'chart-apps',
-      options: {
-        series: [{ type: 'spline', name: 'Apps under management', data: DATA.apps, color: '#3178f2' }],
-        tooltip: { pointFormat: '<b>{point.y} apps</b> under management' },
-      },
-    },
-    {
-      id: 'chart-users',
-      options: {
-        series: [{ type: 'spline', name: 'Users', data: DATA.users, color: '#16a34a' }],
-        yAxis: { labels: { format: '{value:,.0f}' } },
-        tooltip: { pointFormat: '<b>{point.y:,.0f} users</b> with SaaS access' },
-      },
-    },
-    {
-      id: 'chart-spend',
-      options: {
-        series: [{ type: 'column', name: 'Spend tracked', data: DATA.spend, color: '#ff8835', borderRadius: 3, pointPadding: 0.12, groupPadding: 0.1 }],
-        yAxis: { labels: { format: '${value}k' } },
-        tooltip: { pointFormat: '<b>${point.y}k</b> tracked this month' },
-      },
-    },
-    {
-      id: 'chart-savings',
-      options: {
-        series: [{
-          type: 'areaspline',
-          name: 'Cost saved',
-          data: DATA.savings,
-          color: '#8b5cf6',
-          fillColor: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 }, stops: [[0, 'rgba(139,92,246,0.28)'], [1, 'rgba(139,92,246,0.02)']] },
-        }],
-        yAxis: { labels: { format: '${value}k' } },
-        tooltip: { pointFormat: '<b>${point.y}k</b> saved to date' },
-      },
-    },
-  ];
-
-  var rendered = false;
-
-  function renderCharts() {
-    if (rendered || typeof Highcharts === 'undefined') return;
-    CHARTS.forEach(function (c) {
-      var el = document.getElementById(c.id);
-      if (el) Highcharts.chart(el, merge(c.options));
-    });
-    rendered = true;
+  function fitEmbed(box) {
+    if (!box.clientWidth) return;
+    var frame = box.querySelector('iframe');
+    var scale = Math.min(1, box.clientWidth / EMBED_MIN_WIDTH);
+    var spaceBelow = window.innerHeight - (box.getBoundingClientRect().top + window.scrollY);
+    var height = Math.max(EMBED_HEIGHT, spaceBelow / scale);
+    frame.style.width = scale < 1 ? EMBED_MIN_WIDTH + 'px' : '100%';
+    frame.style.height = height + 'px';
+    frame.style.transform = scale < 1 ? 'scale(' + scale + ')' : 'none';
+    box.style.height = Math.floor(height * scale) + 'px';
   }
 
   function setMode(mode) {
@@ -121,16 +42,22 @@
     } catch (e) {
       /* private window — the toggle still works, it just won't be remembered */
     }
-    if (mode === 'regular') {
-      renderCharts();
-      // charts sized while hidden come out 0px wide
-      if (typeof Highcharts !== 'undefined') Highcharts.charts.forEach(function (c) { if (c) c.reflow(); });
+    var embed = document.querySelector('.proto-embed');
+    if (mode === 'regular' && embed) {
+      var frame = embed.querySelector('iframe');
+      if (!frame.getAttribute('src')) frame.setAttribute('src', EMBED_SRC);
+      fitEmbed(embed);
     }
   }
 
   function init() {
     var toggle = document.querySelector('.proto-toggle');
     if (!toggle) return;
+    var embed = document.querySelector('.proto-embed');
+    if (embed && 'ResizeObserver' in window) {
+      new ResizeObserver(function () { fitEmbed(embed); }).observe(embed);
+      window.addEventListener('resize', function () { fitEmbed(embed); });
+    }
     toggle.addEventListener('click', function (e) {
       var btn = e.target.closest('button[data-mode]');
       if (btn) setMode(btn.dataset.mode);

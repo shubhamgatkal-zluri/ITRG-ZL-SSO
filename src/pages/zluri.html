@@ -22,10 +22,10 @@
   <button type="button" data-mode="regular" aria-pressed="true">Regular day</button>
 </div>
 
-<div class="px-4 py-8 @xl:px-8">
+<div>
 
   <!-- ============ FIRST DAY ============ -->
-  <div data-panel="first-day" hidden>
+  <div data-panel="first-day" class="px-4 py-8 @xl:px-8" hidden>
     <section class="relative text-left border-2 rounded-lg shadow-lg bg-white border-slate-500">
       <div class="proto-firstday">
         <p class="proto-firstday__kicker">Included with your membership</p>
@@ -52,102 +52,8 @@
   <!-- ============ REGULAR DAY ============ -->
   <div data-panel="regular" class="flex flex-col gap-6">
 
-    <p class="proto-note">Last 12 months · Oct 2025 – Sep 2026</p>
-
-      <section class="relative text-left border-2 rounded-lg shadow-lg bg-white border-blue-500">
-        <div class="hexagon-rounded flex items-center justify-center absolute top-2.5 -left-px -translate-x-1/2 w-9 h-10 drop-shadow-lg text-blue-500 bg-gradient-to-tr from-blue-700 to-blue-500">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.0002 39.17714" aria-hidden="true" class="absolute fill-transparent text-blue-500 bg-gradient-to-tr from-blue-700 to-blue-500" width="100%" height="100%"><path d="M17.5002,38.17708c-.52588,0-1.04443-.13867-1.49951-.40234l-13.50049-7.79395c-.92529-.53418-1.5-1.5293-1.5-2.59766v-15.58887c0-1.06836.57471-2.06396,1.5-2.59766L16.0002,1.40218c.45508-.26318.97412-.40186,1.5-.40186.52637,0,1.04492.13867,1.5.40186l13.5,7.79443c.9248.53418,1.5,1.5293,1.5,2.59766v15.58887c0,1.06738-.5752,2.06348-1.5,2.59766l-13.5,7.79395c-.45508.26367-.97363.40234-1.5.40234Z"></path><path fill="currentColor" d="M17.5001,2c.35059,0,.69638.09265,1,.26795l13.50013,7.79431c.6168.35611.99997,1.01978.99997,1.732v15.58859c0,.71224-.38318,1.37592-1,1.73204l-13.50009,7.79429c-.30363.1753-.64943.26796-1.00001.26796s-.69638-.09266-1-.26795l-13.50009-7.79429c-.61683-.35612-1.00001-1.01981-1.00001-1.73206v-15.58858c0-.71223.38316-1.37589.99997-1.732l13.50014-7.79432c.30361-.17529.6494-.26794.99999-.26794M17.5001,0c-.6906,0-1.3812.17863-2,.5359L1.99997,8.33021c-1.23759.71452-1.99997,2.03501-1.99997,3.46405v15.58858c0,1.42907.76239,2.74957,2,3.46411l13.5001,7.79429c.6188.35726,1.3094.5359,2,.5359s1.3812-.17863,2-.5359l13.5001-7.7943c1.23761-.71453,2-2.03503,2-3.46409v-15.58859c0-1.42904-.76239-2.74953-1.99997-3.46405L19.5001.5359c-.6188-.35727-1.3094-.5359-2-.5359h0Z"></path></svg>
-          <span class="relative text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" width="15px" height="15px"><path d="M2 2h5.2v5.2H2V2Zm0 6.8h5.2V14H2V8.8ZM8.8 2H14v5.2H8.8V2Zm0 6.8H14V14H8.8V8.8Z"/></svg>
-          </span>
-        </div>
-
-        <div class="flex items-start justify-between gap-4 py-4 pr-4 pl-8 rounded-t-md @md:gap-8 @md:px-8 bg-blue-100">
-          <div>
-            <h2 class="text-blue-700">Apps Under Management</h2>
-            <p class="mt-1 text-sm text-pretty @3xl:text-base">Applications discovered and managed in Zluri, month by month</p>
-          </div>
-          <div class="shrink-0 text-right">
-            <p class="h2 font-accent">268</p>
-            <p class="number-sm leading-tight text-grey-600">+26.4% vs 12 months ago</p>
-          </div>
-        </div>
-
-        <div class="p-4 @md:px-8 @md:py-6">
-          <div class="proto-chart" id="chart-apps"></div>
-        </div>
-      </section>
-
-      <section class="relative text-left border-2 rounded-lg shadow-lg bg-white border-forest-500">
-        <div class="hexagon-rounded flex items-center justify-center absolute top-2.5 -left-px -translate-x-1/2 w-9 h-10 drop-shadow-lg text-forest-500 bg-gradient-to-tr from-forest-700 to-forest-500">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.0002 39.17714" aria-hidden="true" class="absolute fill-transparent text-forest-500 bg-gradient-to-tr from-forest-700 to-forest-500" width="100%" height="100%"><path d="M17.5002,38.17708c-.52588,0-1.04443-.13867-1.49951-.40234l-13.50049-7.79395c-.92529-.53418-1.5-1.5293-1.5-2.59766v-15.58887c0-1.06836.57471-2.06396,1.5-2.59766L16.0002,1.40218c.45508-.26318.97412-.40186,1.5-.40186.52637,0,1.04492.13867,1.5.40186l13.5,7.79443c.9248.53418,1.5,1.5293,1.5,2.59766v15.58887c0,1.06738-.5752,2.06348-1.5,2.59766l-13.5,7.79395c-.45508.26367-.97363.40234-1.5.40234Z"></path><path fill="currentColor" d="M17.5001,2c.35059,0,.69638.09265,1,.26795l13.50013,7.79431c.6168.35611.99997,1.01978.99997,1.732v15.58859c0,.71224-.38318,1.37592-1,1.73204l-13.50009,7.79429c-.30363.1753-.64943.26796-1.00001.26796s-.69638-.09266-1-.26795l-13.50009-7.79429c-.61683-.35612-1.00001-1.01981-1.00001-1.73206v-15.58858c0-.71223.38316-1.37589.99997-1.732l13.50014-7.79432c.30361-.17529.6494-.26794.99999-.26794M17.5001,0c-.6906,0-1.3812.17863-2,.5359L1.99997,8.33021c-1.23759.71452-1.99997,2.03501-1.99997,3.46405v15.58858c0,1.42907.76239,2.74957,2,3.46411l13.5001,7.79429c.6188.35726,1.3094.5359,2,.5359s1.3812-.17863,2-.5359l13.5001-7.7943c1.23761-.71453,2-2.03503,2-3.46409v-15.58859c0-1.42904-.76239-2.74953-1.99997-3.46405L19.5001.5359c-.6188-.35727-1.3094-.5359-2-.5359h0Z"></path></svg>
-          <span class="relative text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" width="15px" height="15px"><path d="M5.6 7.6a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Zm5.4.4a2.1 2.1 0 1 0 0-4.2 2.1 2.1 0 0 0 0 4.2ZM5.6 8.8c-2 0-4.1 1-4.1 2.7V14h8.2v-2.5c0-1.7-2-2.7-4.1-2.7Zm5.4.4c-.4 0-.8 0-1.1.1.7.7 1.1 1.5 1.1 2.2V14h3.5v-2.2c0-1.5-1.7-2.6-3.5-2.6Z"/></svg>
-          </span>
-        </div>
-
-        <div class="flex items-start justify-between gap-4 py-4 pr-4 pl-8 rounded-t-md @md:gap-8 @md:px-8 bg-forest-100">
-          <div>
-            <h2 class="text-forest-700">Users With SaaS Access</h2>
-            <p class="mt-1 text-sm text-pretty @3xl:text-base">People holding at least one licensed application</p>
-          </div>
-          <div class="shrink-0 text-right">
-            <p class="h2 font-accent">2,310</p>
-            <p class="number-sm leading-tight text-grey-600">+25.5% vs 12 months ago</p>
-          </div>
-        </div>
-
-        <div class="p-4 @md:px-8 @md:py-6">
-          <div class="proto-chart" id="chart-users"></div>
-        </div>
-      </section>
-
-      <section class="relative text-left border-2 rounded-lg shadow-lg bg-white border-tangerine-500">
-        <div class="hexagon-rounded flex items-center justify-center absolute top-2.5 -left-px -translate-x-1/2 w-9 h-10 drop-shadow-lg text-tangerine-500 bg-gradient-to-tr from-tangerine-700 to-tangerine-500">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.0002 39.17714" aria-hidden="true" class="absolute fill-transparent text-tangerine-500 bg-gradient-to-tr from-tangerine-700 to-tangerine-500" width="100%" height="100%"><path d="M17.5002,38.17708c-.52588,0-1.04443-.13867-1.49951-.40234l-13.50049-7.79395c-.92529-.53418-1.5-1.5293-1.5-2.59766v-15.58887c0-1.06836.57471-2.06396,1.5-2.59766L16.0002,1.40218c.45508-.26318.97412-.40186,1.5-.40186.52637,0,1.04492.13867,1.5.40186l13.5,7.79443c.9248.53418,1.5,1.5293,1.5,2.59766v15.58887c0,1.06738-.5752,2.06348-1.5,2.59766l-13.5,7.79395c-.45508.26367-.97363.40234-1.5.40234Z"></path><path fill="currentColor" d="M17.5001,2c.35059,0,.69638.09265,1,.26795l13.50013,7.79431c.6168.35611.99997,1.01978.99997,1.732v15.58859c0,.71224-.38318,1.37592-1,1.73204l-13.50009,7.79429c-.30363.1753-.64943.26796-1.00001.26796s-.69638-.09266-1-.26795l-13.50009-7.79429c-.61683-.35612-1.00001-1.01981-1.00001-1.73206v-15.58858c0-.71223.38316-1.37589.99997-1.732l13.50014-7.79432c.30361-.17529.6494-.26794.99999-.26794M17.5001,0c-.6906,0-1.3812.17863-2,.5359L1.99997,8.33021c-1.23759.71452-1.99997,2.03501-1.99997,3.46405v15.58858c0,1.42907.76239,2.74957,2,3.46411l13.5001,7.79429c.6188.35726,1.3094.5359,2,.5359s1.3812-.17863,2-.5359l13.5001-7.7943c1.23761-.71453,2-2.03503,2-3.46409v-15.58859c0-1.42904-.76239-2.74953-1.99997-3.46405L19.5001.5359c-.6188-.35727-1.3094-.5359-2-.5359h0Z"></path></svg>
-          <span class="relative text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" width="15px" height="15px"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm.7 10.4v1H7.3v-1c-1-.1-1.8-.7-2-1.7l1.3-.3c.1.5.5.8 1.2.8.6 0 1-.2 1-.7 0-.4-.3-.6-1.2-.8-1.3-.3-2.1-.8-2.1-1.9 0-.9.6-1.6 1.8-1.7v-1h1.4v1c1 .2 1.6.8 1.8 1.6l-1.3.3c-.1-.4-.4-.7-1-.7s-.9.2-.9.6c0 .4.4.5 1.3.8 1.3.3 2 .8 2 1.9 0 1-.7 1.7-1.6 1.8Z"/></svg>
-          </span>
-        </div>
-
-        <div class="flex items-start justify-between gap-4 py-4 pr-4 pl-8 rounded-t-md @md:gap-8 @md:px-8 bg-tangerine-100">
-          <div>
-            <h2 class="text-tangerine-700">Spend Tracked</h2>
-            <p class="mt-1 text-sm text-pretty @3xl:text-base">SaaS spend Zluri tracked each month, in US dollars</p>
-          </div>
-          <div class="shrink-0 text-right">
-            <p class="h2 font-accent">$352k</p>
-            <p class="number-sm leading-tight text-grey-600">+31.3% vs 12 months ago</p>
-          </div>
-        </div>
-
-        <div class="p-4 @md:px-8 @md:py-6">
-          <div class="proto-chart" id="chart-spend"></div>
-        </div>
-      </section>
-
-      <section class="relative text-left border-2 rounded-lg shadow-lg bg-white border-purple-500">
-        <div class="hexagon-rounded flex items-center justify-center absolute top-2.5 -left-px -translate-x-1/2 w-9 h-10 drop-shadow-lg text-purple-500 bg-gradient-to-tr from-purple-700 to-purple-500">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.0002 39.17714" aria-hidden="true" class="absolute fill-transparent text-purple-500 bg-gradient-to-tr from-purple-700 to-purple-500" width="100%" height="100%"><path d="M17.5002,38.17708c-.52588,0-1.04443-.13867-1.49951-.40234l-13.50049-7.79395c-.92529-.53418-1.5-1.5293-1.5-2.59766v-15.58887c0-1.06836.57471-2.06396,1.5-2.59766L16.0002,1.40218c.45508-.26318.97412-.40186,1.5-.40186.52637,0,1.04492.13867,1.5.40186l13.5,7.79443c.9248.53418,1.5,1.5293,1.5,2.59766v15.58887c0,1.06738-.5752,2.06348-1.5,2.59766l-13.5,7.79395c-.45508.26367-.97363.40234-1.5.40234Z"></path><path fill="currentColor" d="M17.5001,2c.35059,0,.69638.09265,1,.26795l13.50013,7.79431c.6168.35611.99997,1.01978.99997,1.732v15.58859c0,.71224-.38318,1.37592-1,1.73204l-13.50009,7.79429c-.30363.1753-.64943.26796-1.00001.26796s-.69638-.09266-1-.26795l-13.50009-7.79429c-.61683-.35612-1.00001-1.01981-1.00001-1.73206v-15.58858c0-.71223.38316-1.37589.99997-1.732l13.50014-7.79432c.30361-.17529.6494-.26794.99999-.26794M17.5001,0c-.6906,0-1.3812.17863-2,.5359L1.99997,8.33021c-1.23759.71452-1.99997,2.03501-1.99997,3.46405v15.58858c0,1.42907.76239,2.74957,2,3.46411l13.5001,7.79429c.6188.35726,1.3094.5359,2,.5359s1.3812-.17863,2-.5359l13.5001-7.7943c1.23761-.71453,2-2.03503,2-3.46409v-15.58859c0-1.42904-.76239-2.74953-1.99997-3.46405L19.5001.5359c-.6188-.35727-1.3094-.5359-2-.5359h0Z"></path></svg>
-          <span class="relative text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" width="15px" height="15px"><path d="M8 1.2 9.6 5l4.1.3-3.1 2.7 1 4L8 9.8 4.4 12l1-4-3.1-2.7L6.4 5 8 1.2Z"/></svg>
-          </span>
-        </div>
-
-        <div class="flex items-start justify-between gap-4 py-4 pr-4 pl-8 rounded-t-md @md:gap-8 @md:px-8 bg-purple-100">
-          <div>
-            <h2 class="text-purple-700">Cost Saved Through Optimisation</h2>
-            <p class="mt-1 text-sm text-pretty @3xl:text-base">Running total of licence reclaim, downgrades and renewal savings</p>
-          </div>
-          <div class="shrink-0 text-right">
-            <p class="h2 font-accent">$412k</p>
-            <p class="number-sm leading-tight text-grey-600">Cumulative since Oct 2025</p>
-          </div>
-        </div>
-
-        <div class="p-4 @md:px-8 @md:py-6">
-          <div class="proto-chart" id="chart-savings"></div>
-        </div>
-      </section>
+    <div class="proto-embed">
+      <iframe title="Zluri overview"></iframe>
+    </div>
   </div>
 </div>

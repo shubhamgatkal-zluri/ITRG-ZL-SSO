@@ -8,9 +8,8 @@ const OUT = 'public';
 //   layout  which shell to wrap the content in (src/<layout>.html). Default: the ITRG dashboard shell.
 //   nav     sidenav anchor id to mark as the current page (ITRG shell only).
 //   head    extra tags injected before </head>.
-const CHART_HEAD = [
+const ZLURI_HEAD = [
   '<link rel="stylesheet" href="assets/prototype.css">',
-  '<script src="assets/highcharts.js"></script>',
   '<script src="assets/zluri-metrics.js" defer></script>',
 ].join('\n');
 
@@ -20,7 +19,7 @@ const PAGES = {
     title: "Zluri's SaaS Management Platform",
     nav: 'subnav-link-zluri-saas-management',
     // Hide the blue "Service Desk Analytics" title bar on this page only.
-    head: CHART_HEAD + '\n<style>#section-title-bar{display:none}body>header{height:auto}</style>',
+    head: ZLURI_HEAD + '\n<style>#section-title-bar{display:none}body>header{height:auto}</style>',
   },
   'zluri-onboarding': {
     title: 'Set up Zluri',

@@ -28,13 +28,28 @@ badges over `file://`, so the badges vanish. Everything else works either way.
    ├── First day on Zluri  → one button, "Access Zluri"
    │       └── /zluri-onboarding   3-step Zluri setup wizard → Finish setup → /zluri-overview
    │
-   └── Regular day → four charts + "Open Zluri"
+   └── Regular day → Zluri overview iframe + "Open Zluri"
            └── /zluri-overview     Zluri overview, dropped in directly, no login
 ```
 
 The **First day / Regular day** switch floats in the bottom-right of `/zluri` (that page only).
 The white button in the hero follows it: "Access Zluri" to the wizard, or "Open Zluri" to the overview.
 It remembers your last choice in `localStorage`, so a demo picks up where you left it.
+
+### The Zluri overview iframe
+
+Regular day embeds `https://app.zluri.dev/mock-itrg-overview?partner=Zluri`: a login-free copy of
+Zluri's Overview dashboard with hardcoded numbers and no API calls. The page lives in
+`v1-dashboard` (`src/modules/MockItrgOverview/`) and only renders on app.zluri.dev, opened directly
+or framed by this Vercel deploy. Anywhere else it redirects to page-not-found. v1-dashboard's nginx
+`frame-ancestors` header (`default.conf`) lists `https://itrg-zl-sso.vercel.app` so the frame loads.
+
+- On `localhost` the iframe points at `http://localhost:4040/mock-itrg-overview` instead, because
+  app.zluri.dev refuses to be framed from localhost. Start v1-dashboard with `npm start` first.
+- `?partner=Zluri` is required. Inside an iframe, v1-dashboard otherwise assumes the Tangoe partner
+  embed and waits forever for an Auth0 connection.
+- The frame renders at 1280px and scales down to fit, because v1-dashboard swaps in a small-screen
+  notice below 1200px. It sits flush under the hero and stretches to the bottom of the window.
 
 ## Layout
 
@@ -61,10 +76,8 @@ you register. A missing id fails the build loudly rather than silently doing not
 
 ## Where the design came from
 
-**Info-Tech side** (`/zluri`) — the section cards, hexagon badges, colour tokens and typography are
-copied from the saved CIO Analytics page: primary `#1a75d3`, section accents blue `#3178f2`, forest
-`#16a34a`, tangerine `#ff8835`, purple `#8b5cf6`, fonts Montserrat / Exo / Roboto. Charts use
-Highcharts 12.1.2, the same library the real dashboard ships.
+**Info-Tech side** (`/zluri`) — the hero, the first-day card, colour tokens and typography are copied
+from the saved CIO Analytics page: primary `#1a75d3`, fonts Montserrat / Exo / Roboto.
 
 **Zluri side** — rebuilt from `v1-dashboard`:
 
@@ -78,8 +91,11 @@ Highcharts 12.1.2, the same library the real dashboard ships.
 
 ## Known gaps
 
+- **The Zluri overview iframe needs v1-dashboard's `develop` deploy.** Until app.zluri.dev has the
+  `/mock-itrg-overview` route and the `frame-ancestors` entry for this domain, the frame is refused.
 - **All numbers are made up.** Twelve months of plausible demo data, Oct 2025 – Sep 2026, hardcoded
-  in `src/assets/zluri-metrics.js` and `src/assets/zluri/zluri-overview.js`.
+  in `src/assets/zluri/zluri-overview.js`. The `/zluri` iframe's numbers sit at the top of
+  v1-dashboard's `src/modules/MockOverview/MockOverview.tsx`.
 - The real Zluri wizard has a fourth step, "Onboard Your Users to Zluri" (connect your HRMS). It's
   left out here because its own UI labels the flow "Step N of 3" and the HRMS logos aren't in the
   Onboarding folder.

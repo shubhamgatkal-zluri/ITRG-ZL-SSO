@@ -1,12 +1,6 @@
 /* Prototype-only styles. Everything here follows the CIO Analytics design tokens:
    primary #1a75d3, grey-200 #dadada, grey-600 #606060, Exo (accent) / Montserrat (display). */
 
-/* The vendored dashboard CSS masks the hexagon badge with an absolute path we don't ship. */
-.hexagon-rounded {
-  -webkit-mask-image: url('shapes/hexagon.svg');
-  mask-image: url('shapes/hexagon.svg');
-}
-
 /* ---- demo mode toggle: floats bottom-right, Zluri page only ---- */
 .proto-toggle {
   position: fixed;
@@ -52,13 +46,15 @@
   color: #1a75d3;
 }
 
-/* ---- chart wells ---- */
-.proto-chart {
-  width: 100%;
-  height: 300px;
+/* ---- Zluri overview iframe: v1-dashboard's /mock-overview on localhost:4040 ---- */
+.proto-embed {
+  overflow: hidden;
+  background: #e8f0fc;
 }
-.proto-chart-tall {
-  height: 340px;
+.proto-embed iframe {
+  display: block;
+  border: 0;
+  transform-origin: top left;
 }
 
 /* ---- the big handoff button ---- */
